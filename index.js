@@ -279,5 +279,8 @@ app.get('*', (req, res) => {
 })
 
 app.listen(PORT, () => {
-    console.log(`server has started on port ${PORT}`)
+    app.listen(PORT, err => {
+        if(err) throw err;
+        console.log("%c Server running", "color: green");
+    });
 });

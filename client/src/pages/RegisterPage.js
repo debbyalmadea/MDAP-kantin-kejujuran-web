@@ -46,7 +46,8 @@ function RegisterPage() {
                     password: passwordRef.current.value
                 }
             )
-        }).then((res) => res.json())
+        }).catch(error => console.log(error))
+        .then((res) => res.json())
         .then((data) => {
             if (data.loggedIn) {
                 const item = {
