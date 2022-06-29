@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn-primary {
+        @apply bg-primary rounded-xl text-[10px] md:text-[14px] font-bold text-white px-[20px] md:px-[45px] py-[10px] md:py-[12px];
+    }
+    .btn-secondary {
+        @apply bg-white border-primary border-[1px] rounded-xl text-[10px] md:text-[14px] text-primary px-[20px] md:px-[45px] py-[10px] md:py-[12px];
+    }
+    .form-input {
+        @apply bg-[#D9D9D9] bg-opacity-30 py-[8px] px-[12px] md:px-[30px] rounded-xl w-full md:text-[16px] focus:outline-black focus:bg-white;
+    }
+    .form-card {
+        @apply w-[80vw] md:w-[600px] mx-[32px] px-[32px] py-[24px] md:px-[54px] md:py-[42px] bg-white border-[1px] border-black rounded-3xl shadow-xl relative;
+    }
+    .txt-title {
+        @apply text-primary text-[32px] md:text-[64px] font-extrabold;
+    }
+    .txt-body {
+        @apply text-[10px] md:text-[14px];
+    }
+    .txt-h1 {
+        @apply text-[16px] md:text-[32px] font-semibold;
+    }
+    .txt-h2 {
+        @apply text-[12px] md:text-[24px];
+    }
+    .txt-h3 {
+        @apply text-[10px] md:text-[18px];
+    }
+  }
