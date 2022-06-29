@@ -278,9 +278,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, "client/build/index.html"))
 })
 
-app.listen(PORT, () => {
-    app.listen(PORT, err => {
-        if(err) throw err;
-        console.log("%c Server running", "color: green");
-    });
+app.listen(PORT, (err) => {
+    if(err) throw err;
+    console.log("%c Server running", "color: green");
 });
