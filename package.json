@@ -9,9 +9,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "heroku-postbuild": "cd - && cd client && npm install && npm run build",
+    "heroku-postbuild": "cd client && npm install && npm run build",
     "devStart": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
