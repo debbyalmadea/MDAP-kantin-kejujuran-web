@@ -15,10 +15,6 @@ app.use(
 );
 app.use(express.json());
 
-// serve static content
-app.use(express.static(path.join(__dirname, "build")));
-
-
 // ROUTES //
 
 // register a user
@@ -273,7 +269,11 @@ function authenticateToken(req, res, next) {
     })
 }
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, "build/index.html")));
+app.use(express.static(path.join(__dirname, "/client/build")));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+});
 
 app.listen(PORT, (err) => {
     if(err) throw err;
