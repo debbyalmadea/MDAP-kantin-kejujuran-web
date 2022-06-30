@@ -41,7 +41,7 @@ function BalanceBoxPage() {
         <div className="mt-[8vh] md:mt-0">
             <h1 className="txt-title text-center">Balance Box</h1>
             <div className="flex justify-center md:mt-[20px] animate-slideIn">
-                <img alt='' src='./images/balance_box_image.png' className="w-[80px] md:w-[200px]" />
+                <img alt='' src='%PUBLIC_URL%/images/balance_box_image.png' className="w-[80px] md:w-[200px]" />
             </div>
             <h1 className="text-[24px] md:text-[48px] font-extrabold text-black text-center animate-slideIn">{formatter.format(balance)}</h1>
             <div className="flex justify-center mt-[12px] md:mt-[20px] animate-slideIn z-10">

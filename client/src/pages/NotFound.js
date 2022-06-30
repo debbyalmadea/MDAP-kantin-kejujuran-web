@@ -9,7 +9,7 @@ function NotFound() {
                 <h1>Error 404</h1>
                 <h1>Page Not Found</h1>
             </div>
-            <img alt='' src='./images/error_404_image.png' className="h-[calc(60vh-80px)] fixed bottom-0 -z-10 object-cover"/>
+            <img alt='' src='%PUBLIC_URL%/images/error_404_image.png' className="h-[calc(60vh-80px)] fixed bottom-0 -z-10 object-cover"/>
         </div>
     )
 }

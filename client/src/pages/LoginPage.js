@@ -81,7 +81,7 @@ function LoginPage() {
                 <p className="mt-[12px] md:mt-[20px] txt-body text-center">Don't have an account yet? <Link to='/register' className="text-primary underline">Register</Link></p>
             </div>
 
-            <img alt='' src='./images/register_image.png' className="fixed -bottom-2 -z-10 object-cover h-[60vh]"/>
+            <img alt='' src='%PUBLIC_URL%/images/register_image.png' className="fixed -bottom-2 -z-10 object-cover h-[60vh]"/>
         </div>
     )
 }
