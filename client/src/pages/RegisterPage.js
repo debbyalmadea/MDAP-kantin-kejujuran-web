@@ -69,7 +69,6 @@ function RegisterPage() {
 
     return (
         <div className="flex justify-center items-center">
-            <img alt='' src='/images/register_image.png' className="fixed -bottom-2 object-cover h-[60vh]"/>
             <div className="form-card animate-slideIn">
                 <h1 className="text-center txt-h1 font-extrabold">
                     Register
@@ -109,6 +108,7 @@ function RegisterPage() {
                 <p className="txt-body mt-[12px] md:mt-[20px] txt-body text-center">Already have an account? <Link to='/login' className="text-primary underline">Log in</Link></p>
             </div>
 
+            <img alt='' src='/images/register_image.png' className="fixed -bottom-2 -z-10 object-cover h-[60vh]"/>
         </div>
     )
 }

@@ -23,11 +23,9 @@ function StorePage() {
 
     // format to currency string
     var formatter = new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" })
-    
+
     return (
         <>
-            <img alt='' src='/images/plant_1.png' className="fixed bottom-0 right-0 h-[40vh]"/>
-            <img alt='' src='/images/plant_2.png' className="fixed bottom-0 left-0 h-[40vh]"/>
             <h1 className="txt-title text-center">Canteen's Store</h1>
             <div className="flex flex-col-reverse sm:flex-row justify-between items-start sm:items-center mt-[4vh]">
                 <SortTabs handleSortChange={(sort) => setSortingState(sort)} />
@@ -54,6 +52,8 @@ function StorePage() {
             </button>
             {addFormState && <AddNewItemForm closeForm={() => setAddFormState(false)} />}
             
+            <img alt='' src='/images/plant_1.png' className="-z-10 fixed bottom-0 right-0 h-[40vh]"/>
+            <img alt='' src='/images/plant_2.png' className="-z-10 fixed bottom-0 left-0 h-[40vh]"/>
         </>
     )
 }
