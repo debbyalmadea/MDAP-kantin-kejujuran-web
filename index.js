@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const pool = require("./db");
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const path = require("path");
 const PORT = process.env.PORT || 8000;
@@ -15,10 +15,9 @@ app.use(
 );
 app.use(express.json());
 
-if (process.env.NODE_ENV === "production") {
-    // serve static content
-    app.use(express.static(path.join(__dirname, "client/build")))
-}
+// serve static content
+app.use(express.static(path.join(__dirname, "client/build")))
+
 
 // ROUTES //
 
@@ -274,9 +273,7 @@ function authenticateToken(req, res, next) {
     })
 }
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, "client/build/index.html"))
-})
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, "/client/build/index.html")));
 
 app.listen(PORT, (err) => {
     if(err) throw err;
