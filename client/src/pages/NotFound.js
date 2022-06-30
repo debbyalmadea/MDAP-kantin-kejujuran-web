@@ -5,11 +5,11 @@ function NotFound() {
                         max-h-[calc(100vh-80px)] 
                         text-center 
                         overflow-hidden">
+            <img alt='' src='/images/error_404_image.png' className="h-[calc(60vh-80px)] fixed bottom-0 object-cover"/>
             <div className="animate-slideIn flex flex-col txt-title">
                 <h1>Error 404</h1>
                 <h1>Page Not Found</h1>
             </div>
-            <img alt='' src='/images/error_404_image.png' className="h-[calc(60vh-80px)] fixed bottom-0 -z-10 object-cover"/>
         </div>
     )
 }

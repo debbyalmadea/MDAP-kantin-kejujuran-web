@@ -43,9 +43,9 @@ function SortTabs(props) {
         <div className="flex items-center">
                 <h2 className="text-[12px] md:text-[18px] lg:text-[24px] font-bold mr-[2vw]">Sort</h2>
                 <div className="border-[1px] border-primary rounded-xl txt-body relative">
+                    <div className={"btn-primary absolute left-0 top-0 rounded-lg w-[78.3px] sm:w-[94.3px] md:w-[122.41px] h-[31px] md:h-[45px]" + sortTabsState.transition}></div>
                     <button onClick={handleDateClick} className={"rounded-xl px-[24px] sm:px-[32px] md:px-[40px] py-[8px] md:py-[12px] " + sortTabsState.dateTab}>Date</button>
                     <button onClick={handleNameClick} className={"rounded-xl px-[24px] sm:px-[32px] md:px-[40px] py-[8px] md:py-[12px] " + sortTabsState.nameTab}>Name</button>
-                    <div className={"btn-primary absolute left-0 top-0 rounded-lg w-[78.3px] sm:w-[94.3px] md:w-[122.41px] h-[31px] md:h-[45px] -z-[1] " + sortTabsState.transition}></div>
                 </div>
                 <button onClick={handleOrderChange} className="text-[36px] ml-[0.5vw] text-primary">{orderIcon}</button>
         </div>

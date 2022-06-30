@@ -49,9 +49,10 @@ function LoginPage() {
 
         setLoading(false)
     }
-
+    
     return (
         <div className="flex justify-center items-center">
+            <img alt='' src='/images/register_image.png' className="fixed -bottom-2 object-cover h-[60vh]"/>
             <div className="form-card animate-slideIn">
                 <h1 className="text-center txt-h1 font-extrabold">
                     Log In
@@ -81,7 +82,6 @@ function LoginPage() {
                 <p className="mt-[12px] md:mt-[20px] txt-body text-center">Don't have an account yet? <Link to='/register' className="text-primary underline">Register</Link></p>
             </div>
 
-            <img alt='' src='/images/register_image.png' className="fixed -bottom-2 -z-10 object-cover h-[60vh]"/>
         </div>
     )
 }

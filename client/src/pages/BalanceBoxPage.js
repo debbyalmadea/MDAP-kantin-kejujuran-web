@@ -36,9 +36,11 @@ function BalanceBoxPage() {
             error => { return setErrorMessage(error) }
         )
     }
-
+    
     return (
         <div className="mt-[8vh] md:mt-0">
+            <img alt='' src='/images/plant_1.png' className="fixed bottom-0 right-0 h-[40vh]"/>
+            <img alt='' src='/images/plant_2.png' className="fixed bottom-0 left-0 h-[40vh]"/>
             <h1 className="txt-title text-center">Balance Box</h1>
             <div className="flex justify-center md:mt-[20px] animate-slideIn">
                 <img alt='' src='/images/balance_box_image.png' className="w-[80px] md:w-[200px]" />
@@ -57,9 +59,6 @@ function BalanceBoxPage() {
                     </div>
                 </div>
             </div>
-
-            <img alt='' src='/images/plant_1.png' className="-z-10 fixed bottom-0 right-0 h-[40vh]"/>
-            <img alt='' src='/images/plant_2.png' className="-z-10 fixed bottom-0 left-0 h-[40vh]"/>
         </div>
     )
 }

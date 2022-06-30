@@ -11,7 +11,7 @@ import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <div className="px-[8vw] py-[20px] bg-white relative -z-[50]">
+    <div className="px-[8vw] py-[20px] bg-white">
       <div className="relative z-10">
         <Navbar />
       </div>
