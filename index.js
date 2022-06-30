@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const pool = require("./db");
+const client = require("./db");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const PORT = process.env.PORT || 8000;
@@ -18,14 +18,14 @@ app.use(express.json());
 
 // register a user
 app.post("/user/register", async(req, res) => {
-    const existingUser = await pool.query(
+    const existingUser = await client.query(
         'SELECT student_id from "user" WHERE student_id=$1', [req.body.student_id]
     );
 
     if (existingUser.rowCount === 0) {
         // register
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
-        const newUser = await pool.query(
+        const newUser = await client.query(
             'INSERT INTO "user" (student_id, password) VALUES($1, $2) RETURNING student_id', [req.body.student_id, hashedPassword]
         );
         
@@ -38,7 +38,7 @@ app.post("/user/register", async(req, res) => {
 
 // log a user
 app.post('/user/login', async(req, res) => {
-    const user = await pool.query(
+    const user = await client.query(
         'SELECT * FROM "user" WHERE student_id = $1', [req.body.student_id]
     );
     
@@ -67,7 +67,7 @@ app.post('/user/auth', authenticateToken, async(req, res) => {
 app.post('/item/add', async(req, res) => {
     const { name, price, image, description, student_id } = req.body;
     try { 
-        const newItem = await pool.query(
+        const newItem = await client.query(
             'INSERT INTO item (name, price, image, description, seller_id) VALUES($1, $2, $3, $4, $5)', [name, price, image, description, student_id]
         );
         res.json({itemAdded: true});
@@ -86,24 +86,24 @@ app.get('/item/sorted/:sort_by/:order', async(req, res) => {
     try {
         if (order === 'desc') {
             if (sort_by === 'created_timestamp') {
-                const sortedItems = await pool.query(
+                const sortedItems = await client.query(
                     'SELECT * FROM item WHERE sold=FALSE ORDER BY created_timestamp DESC'
                 );
                 res.json(sortedItems.rows);
             } else if (sort_by === 'name'){
-                const sortedItems = await pool.query(
+                const sortedItems = await client.query(
                     'SELECT * FROM item WHERE sold=FALSE ORDER BY name DESC'
                 );
                 res.json(sortedItems.rows);
             }
         } else {
             if (sort_by === 'created_timestamp') {
-                const sortedItems = await pool.query(
+                const sortedItems = await client.query(
                     'SELECT * FROM item WHERE sold=FALSE ORDER BY created_timestamp'
                 );
                 res.json(sortedItems.rows);
             } else if (sort_by === 'name'){
-                const sortedItems = await pool.query(
+                const sortedItems = await client.query(
                     'SELECT * FROM item WHERE sold=FALSE ORDER BY name'
                 );
                 res.json(sortedItems.rows);
@@ -125,24 +125,24 @@ app.get('/:student_id/my-items/sold/:sold/sorted/:sort_by/:order', async (req, r
     try {
         if (order === 'desc') {
             if (sort_by === 'created_timestamp') {
-                const sortedItems = await pool.query(
+                const sortedItems = await client.query(
                     'SELECT * FROM item WHERE seller_id=$1 AND sold=$2 ORDER BY created_timestamp DESC', [student_id, sold]
                 );
                 res.json(sortedItems.rows);
             } else if (sort_by === 'name'){
-                const sortedItems = await pool.query(
+                const sortedItems = await client.query(
                     'SELECT * FROM item WHERE seller_id=$1 AND sold=$2 ORDER BY name DESC', [student_id, sold]
                 );
                 res.json(sortedItems.rows);
             }
         } else {
             if (sort_by === 'created_timestamp') {
-                const sortedItems = await pool.query(
+                const sortedItems = await client.query(
                     'SELECT * FROM item WHERE seller_id=$1 AND sold=$2 ORDER BY created_timestamp', [student_id, sold]
                 );
                 res.json(sortedItems.rows);
             } else if (sort_by === 'name'){
-                const sortedItems = await pool.query(
+                const sortedItems = await client.query(
                     'SELECT * FROM item WHERE seller_id=$1 AND sold=$2 ORDER BY name', [student_id, sold]
                 );
                 res.json(sortedItems.rows);
@@ -164,24 +164,24 @@ app.get('/:student_id/my-items/bought/sorted/:sort_by/:order', async (req, res) 
     try {
         if (order === 'desc') {
             if (sort_by === 'created_timestamp') {
-                const sortedItems = await pool.query(
+                const sortedItems = await client.query(
                     'SELECT * FROM item WHERE buyer_id=$1 ORDER BY created_timestamp DESC', [student_id]
                 );
                 res.json(sortedItems.rows);
             } else if (sort_by === 'name'){
-                const sortedItems = await pool.query(
+                const sortedItems = await client.query(
                     'SELECT * FROM item WHERE buyer_id=$1 ORDER BY name DESC', [student_id]
                 );
                 res.json(sortedItems.rows);
             }
         } else {
             if (sort_by === 'created_timestamp') {
-                const sortedItems = await pool.query(
+                const sortedItems = await client.query(
                     'SELECT * FROM item WHERE buyer_id=$1 ORDER BY created_timestamp', [student_id]
                 );
                 res.json(sortedItems.rows);
             } else if (sort_by === 'name'){
-                const sortedItems = await pool.query(
+                const sortedItems = await client.query(
                     'SELECT * FROM item WHERE buyer_id=$1 ORDER BY name', [student_id]
                 );
                 res.json(sortedItems.rows);
@@ -197,7 +197,7 @@ app.get('/:student_id/my-items/bought/sorted/:sort_by/:order', async (req, res) 
 // buy item 
 app.post('/item/buy', async(req, res) => {
     try {
-        await pool.query(
+        await client.query(
             'UPDATE item SET sold=true, buyer_id=$1 WHERE id=$2', [req.body.buyer_id, req.body.id]
         );
         res.json({itemBought: true});
@@ -211,7 +211,7 @@ app.post('/item/buy', async(req, res) => {
 // edit item
 app.post('/item/edit', async(req, res) => {
     try {
-        await pool.query(
+        await client.query(
             'UPDATE item SET name=$1, price=$2, image=$3, description=$4 WHERE id=$5', [req.body.name, req.body.price, req.body.image, req.body.description, req.body.id]
         );
         res.json({itemUpdated: true});
@@ -224,7 +224,7 @@ app.post('/item/edit', async(req, res) => {
 
 // get canteen's balance
 app.get('/balance', async(req, res) => {
-    const balance = await pool.query(
+    const balance = await client.query(
         'SELECT balance FROM balance_box'
     );
 
@@ -234,7 +234,7 @@ app.get('/balance', async(req, res) => {
 // update canteen's balance
 app.post('/balance', async(req, res) => {
     try {
-        const balance = await pool.query(
+        const balance = await client.query(
             'UPDATE balance_box SET balance=$1 RETURNING balance', [req.body.balance]
         )
     
