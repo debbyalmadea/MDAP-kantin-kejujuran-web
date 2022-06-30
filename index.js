@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 8000;
 require("dotenv").config();
 
 // middleware
-app.use(cors());
+app.use(cors({origin: 'https://mdap-kantin-kejujuran-server.herokuapp.com'}));
 
 app.use(express.json());
 
