@@ -15,7 +15,7 @@ function EditItemForm(props) {
         setLoading(true)
         setErrorMessage('')
 
-        fetch("/item/edit",
+        fetch(`${process.env.REACT_APP_SERVER_URL}/item/edit`,
         {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},

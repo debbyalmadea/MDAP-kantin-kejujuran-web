@@ -7,7 +7,7 @@ export function BalanceContextProvider(props) {
 
     // get balance
     useEffect(() => {
-        fetch("/balance")
+        fetch(`${process.env.REACT_APP_SERVER_URL}/balance`)
         .catch((error) => {
             return
         }).then((res) => res.json())
@@ -19,7 +19,7 @@ export function BalanceContextProvider(props) {
     // update balance
     function updateBalance(newBalance) {
         let promise = new Promise((resolve, reject) => {
-            fetch("/balance",
+            fetch(`${process.env.REACT_APP_SERVER_URL}/balance`,
             {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},

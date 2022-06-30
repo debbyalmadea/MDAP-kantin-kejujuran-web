@@ -22,9 +22,9 @@ function MyItemsPage() {
             sortingState={sortingState}
             url={
             sortingState.filter.sold !== null ?
-            `/${currentUser.student_id}/my-items/sold/${sortingState.filter.sold}/sorted/${sortingState.sort_by}/${sortingState.order}`
+            `${process.env.REACT_APP_SERVER_URL}/${currentUser.student_id}/my-items/sold/${sortingState.filter.sold}/sorted/${sortingState.sort_by}/${sortingState.order}`
             :
-            `/${currentUser.student_id}/my-items/bought/sorted/${sortingState.sort_by}/${sortingState.order}`
+            `${process.env.REACT_APP_SERVER_URL}/${currentUser.student_id}/my-items/bought/sorted/${sortingState.sort_by}/${sortingState.order}`
             } 
             />
 

@@ -36,7 +36,7 @@ function RegisterPage() {
         
         setLoading(true)
    
-        fetch("/user/register",
+        fetch(`${process.env.REACT_APP_SERVER_URL}/user/register`,
         {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},

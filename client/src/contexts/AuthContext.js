@@ -9,7 +9,7 @@ export function AuthContextProvider(props) {
     useEffect(() => {
         setIsLoading(true)
         // const token = JSON.parse(localStorage.getItem('token')).token
-        fetch("/user/auth", 
+        fetch(`${process.env.REACT_APP_SERVER_URL}/user/auth`, 
         {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},

@@ -42,7 +42,7 @@ function StorePage() {
 
             <ItemsDisplay
             sortingState={sortingState}
-            url={`/item/sorted/${sortingState.sort_by}/${sortingState.order}`} />
+            url={`${process.env.REACT_APP_SERVER_URL}/item/sorted/${sortingState.sort_by}/${sortingState.order}`} />
             
             <button 
             onClick={() => 
