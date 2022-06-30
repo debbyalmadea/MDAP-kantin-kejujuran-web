@@ -15,7 +15,7 @@ function LandingPage() {
                     <Link to='/store' className="w-full px-[45px] md:px-[90px]">Go To Canteen's Store</Link>
                 </button>
             </div>
-            <img alt='' src='%PUBLIC_URL%/images/landing_page_image.png' className="h-[calc(100vh-284px-80px-8vh)] fixed bottom-0 object-cover"/>
+            <img alt='' src='/images/landing_page_image.png' className="h-[calc(100vh-284px-80px-8vh)] fixed bottom-0 object-cover"/>
         </div>
     )
 }

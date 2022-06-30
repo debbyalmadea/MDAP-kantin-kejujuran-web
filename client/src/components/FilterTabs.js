@@ -21,7 +21,7 @@ function FilterTabs(props) {
     function handleOnSaleClick() {
         if (filterTabsState.filter !== 'on_sale') {
             props.handleFilterChange({ filter: {sold: false} })
-            setFilterTabsState({ filter: 'on_sale', soldTab: secondary_style, onSaleTab: primary_style, boughtTab: secondary_style, transition: 'transform transition ease-in-out duration-300 translate-x-[73px] sm:translate-x-[70px] md:translate-x-[96px]'})
+            setFilterTabsState({ filter: 'on_sale', soldTab: secondary_style, onSaleTab: primary_style, boughtTab: secondary_style, transition: 'transform transition ease-in-out duration-300 translate-x-[60px] sm:translate-x-[70px] md:translate-x-[96px]'})
         }
     }
 
@@ -29,7 +29,7 @@ function FilterTabs(props) {
     function handleBoughtClick() {
         if (filterTabsState.filter !== 'bought') {
             props.handleFilterChange({ filter: {sold: null} })
-            setFilterTabsState({ filter: 'bought', soldTab: secondary_style, onSaleTab: secondary_style, boughtTab: primary_style, transition: 'transform transition ease-in-out duration-300 sm:translate-x-[145px] md:translate-x-[200px]'})
+            setFilterTabsState({ filter: 'bought', soldTab: secondary_style, onSaleTab: secondary_style, boughtTab: primary_style, transition: 'transform transition ease-in-out duration-300 translate-x-[137px] sm:translate-x-[145px] md:translate-x-[200px]'})
         }
     }
     return (

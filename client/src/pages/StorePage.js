@@ -52,8 +52,8 @@ function StorePage() {
             </button>
             {addFormState && <AddNewItemForm closeForm={() => setAddFormState(false)} />}
             
-            <img alt='' src='%PUBLIC_URL%/images/plant_1.png' className="-z-10 fixed bottom-0 right-0 h-[40vh]"/>
-            <img alt='' src='%PUBLIC_URL%/images/plant_2.png' className="-z-10 fixed bottom-0 left-0 h-[40vh]"/>
+            <img alt='' src='/images/plant_1.png' className="-z-10 fixed bottom-0 right-0 h-[40vh]"/>
+            <img alt='' src='/images/plant_2.png' className="-z-10 fixed bottom-0 left-0 h-[40vh]"/>
         </>
     )
 }
