@@ -4,7 +4,6 @@ const cors = require("cors");
 const pool = require("./db");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const path = require("path");
 const PORT = process.env.PORT || 8000;
 
 require("dotenv").config();
@@ -268,12 +267,6 @@ function authenticateToken(req, res, next) {
         next();
     })
 }
-
-app.use(express.static(path.join(__dirname, "/client/build")));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
-});
 
 app.listen(PORT, (err) => {
     if(err) throw err;
