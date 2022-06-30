@@ -34,7 +34,7 @@ function FilterTabs(props) {
     }
     return (
         <div className="txt-body items-center border-[1px] border-primary rounded-xl md:text-[16px] relative mt-[8px] sm:mt-0">
-            <div className={"btn-primary absolute left-0 top-0 rounded-lg w-[68px] sm:w-[72px] md:w-[100px] h-[31px] md:h-[45px]" + filterTabsState.transition}></div>
+            <div className={"btn-primary absolute left-0 top-0 rounded-lg w-[68px] sm:w-[72px] md:w-[100px] h-[31px] md:h-[45px] " + filterTabsState.transition}></div>
             <button onClick={handleSoldClick} className={"rounded-xl px-[18px] sm:px-[24px] md:px-[34px] py-[8px] md:py-[12px] " + filterTabsState.soldTab}>Sold</button>
             <button onClick={handleOnSaleClick} className={"rounded-xl px-[18px] sm:px-[18px] md:px-[24px] py-[8px] md:py-[12px] " + filterTabsState.onSaleTab}>On Sale</button>
             <button onClick={handleBoughtClick} className={"rounded-xl px-[18px] sm:px-[18px] md:px-[24px] py-[8px] md:py-[12px] " + filterTabsState.boughtTab}>Bought</button>
