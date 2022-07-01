@@ -9,12 +9,11 @@ const devConfig = {
     database: process.env.PG_DATABASE
 };
 
-const client = new Client(process.env.NODE_ENV==="production" ? {
+const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
-  }
-} : devConfig);
+  }});
 
 client.connect();
 
