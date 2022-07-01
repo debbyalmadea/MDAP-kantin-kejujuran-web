@@ -67,6 +67,12 @@ This website used 3 environment variable
 * ACCESS_TOKEN_SECRET, to store the access token secret of JWT 
 * DATABASE_URL, to store the URL of the database
 
+## Graphic Used
+
+### Figma plugins: [Blush](https://www.figma.com/community/plugin/838959511417581040)
+* Shiny Happy by Brendon Mendoza
+* Tech Life by Karthik Srinivas
+
 ## Deployment
 
 ### Client: [Vercel](https://mdap-kantin-kejujuran-web.vercel.app/)
