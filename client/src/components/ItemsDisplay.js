@@ -1,14 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import ReactPagination from "react-paginate";
 
 import ItemCard from "../components/ItemCard";
 import ItemModal from "../components/ItemModal";
 
-import AuthContext from "../contexts/AuthContext";
-
-function ItemsDisplay({ url, sortingState }) {
-    // contexts
-    const { currentUser } = useContext(AuthContext);
+function ItemsDisplay({ url }) {
 
     // states
     const [ loading, setLoading ] = useState(false);
@@ -35,9 +31,9 @@ function ItemsDisplay({ url, sortingState }) {
                 return console.log(data.status)
             }
             setItems(data)
-          })
-        setLoading(false)
-      }, [sortingState, currentUser])
+        })
+        .finally(() => setLoading(false))
+      }, [url])
 
     // display items per page
     const displayItems = items
@@ -63,14 +59,15 @@ function ItemsDisplay({ url, sortingState }) {
         <>
 
             <div className="mt-[80px] mb-[60px] px-[8px] bg-primary h-fit rounded-3xl min-h-[732px]">
-                {!loading &&
-                items.length !== 0 ?
+               {!loading && items.length !== 0 ?
                 <div className="flex flex-wrap justify-center relative top-[-50px]">
                     {displayItems}
                 </div>
                 : 
                 <div className="animate-slideIn flex flex-col justify-center items-center text-center pt-[180px] space-y-8">
-                    <h1 className="text-white font-semibold">Oops...It appears there is no item to show.</h1>
+                    <h1 className="text-white font-semibold">
+                        {loading ? "Loading items..." : "Oops...It appears there is no item to show."}
+                    </h1>
                     <img alt='' src='./images/sold_out_image.png' />
                 </div>}
             </div>

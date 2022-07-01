@@ -9,7 +9,7 @@ function EditItemForm(props) {
     const [ errorMessage, setErrorMessage ] = useState('')
     const [ loading, setLoading ] = useState(false)
 
-    function handleSubmit(e) {
+    function handleUpdate(e) {
         e.preventDefault();
 
         setLoading(true)
@@ -29,20 +29,40 @@ function EditItemForm(props) {
         }).then((res) => res.json())
         .then((data) => {
             if (!data.itemUpdated) {
+                setLoading(false)
                 return setErrorMessage(data.status)
             } else {
                 setLoading(false)
                 window.location.reload(false)
             }
         })
+    }
 
+    function handleRemove(e) {
+        e.preventDefault();
+
+        setLoading(true)
+        setErrorMessage('')
+
+        fetch(`${process.env.REACT_APP_SERVER_URL}/item/${props.item.id}`, {
+            method: "DELETE"
+        }).then((res) => res.json())
+        .then((data) => {
+            if (!data.itemDeleted) {
+                setLoading(false)
+                return setErrorMessage(data.status)
+            } else {
+                setLoading(false)
+                window.location.reload(false)
+            }
+        })
     }
 
     return (
         <div>
             <div
             onClick={(e) => {e.stopPropagation()}} 
-            className="form-card animate-slideIn my-[16px] max-h-screen overflow-scroll">
+            className="form-card animate-slideIn my-[8px] max-h-screen overflow-scroll">
 
                 <h1 className="text-center text-[16px] sm:text-[32px] font-extrabold">
                     Edit Item
@@ -51,7 +71,7 @@ function EditItemForm(props) {
                 {errorMessage &&
                 <Alert className="mb-[24px] lg:mb-[42px]">{errorMessage}</Alert>}
 
-                <form onSubmit={handleSubmit} disabled={loading}>
+                <form onSubmit={handleUpdate} disabled={loading}>
                     <div className="text-[10px] sm:text-[18px] mt-[12px] sm:mt-[20px]">
                         <label className="font-semibold">
                             Item's Name
@@ -94,11 +114,16 @@ function EditItemForm(props) {
                     <button
                     disabled={loading}
                     type='submit'
-                    className="mt-[24px] sm:mt-[42px] btn-primary w-full">
+                    className="mt-[16px] sm:mt-[36px] sm:text-[14px] btn-primary w-full">
                         Update
                     </button>
+                    <button
+                    disabled={loading}
+                    onClick={handleRemove}
+                    className="mt-[12px] sm:mt-[20px] sm:text-[14px] w-full btn-secondary border-red-400 text-red-400">
+                        Remove Item
+                    </button>
                 </form>
-
 
             </div>
         </div>

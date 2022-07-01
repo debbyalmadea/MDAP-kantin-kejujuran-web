@@ -78,32 +78,33 @@ app.post('/item/add', async(req, res) => {
 });
 
 // get sorted items
-app.get('/item/sorted/:sort_by/:order', async(req, res) => {
-    const sort_by = req.params.sort_by;
-    const order = req.params.order;
+app.get('/item/search', async(req, res) => {
+    const name = req.query.name;
+    const sort = req.query.sort;
+    const order = req.query.order;
 
     try {
-        if (order === 'desc') {
-            if (sort_by === 'created_timestamp') {
+        if (order === "desc") {
+            if (sort === "created_timestamp") {
                 const sortedItems = await client.query(
-                    'SELECT * FROM item WHERE sold=FALSE ORDER BY created_timestamp DESC'
+                    `SELECT * FROM item WHERE sold=FALSE AND LOWER(name) LIKE LOWER('%${name}%') ORDER BY created_timestamp DESC`
                 );
                 res.json(sortedItems.rows);
-            } else if (sort_by === 'name'){
+            } else if (sort === "name"){
                 const sortedItems = await client.query(
-                    'SELECT * FROM item WHERE sold=FALSE ORDER BY name DESC'
+                    `SELECT * FROM item WHERE sold=FALSE AND LOWER(name) LIKE LOWER('%${name}%') ORDER BY name DESC`
                 );
                 res.json(sortedItems.rows);
             }
         } else {
-            if (sort_by === 'created_timestamp') {
+            if (sort === "created_timestamp") {
                 const sortedItems = await client.query(
-                    'SELECT * FROM item WHERE sold=FALSE ORDER BY created_timestamp'
+                    `SELECT * FROM item WHERE sold=FALSE AND LOWER(name) LIKE LOWER('%${name}%') ORDER BY created_timestamp`
                 );
                 res.json(sortedItems.rows);
-            } else if (sort_by === 'name'){
+            } else if (sort === "name"){
                 const sortedItems = await client.query(
-                    'SELECT * FROM item WHERE sold=FALSE ORDER BY name'
+                    `SELECT * FROM item WHERE sold=FALSE AND LOWER(name) LIKE LOWER('%${name}%') ORDER BY name`
                 );
                 res.json(sortedItems.rows);
             } 
@@ -221,6 +222,22 @@ app.post('/item/edit', async(req, res) => {
     }
 })
 
+// remove item
+app.delete("/item/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const deleteItem = await client.query(
+            'DELETE FROM item WHERE id = $1', [id]
+        );
+        res.json({itemDeleted: true});
+    } catch (err) {
+        res.status(400);
+        res.json({itemDeleted: false, status: "Oops...something went wrong."});
+        console.log(err.message);
+    }
+});
+
+// CANTEEN'S BALANCE
 // get canteen's balance
 app.get('/balance', async(req, res) => {
     const balance = await client.query(
@@ -235,7 +252,7 @@ app.post('/balance', async(req, res) => {
     try {
         const balance = await client.query(
             'UPDATE balance_box SET balance=$1 RETURNING balance', [req.body.balance]
-        )
+        );
     
         res.json(balance.rows[0]);
     } catch(error) {
