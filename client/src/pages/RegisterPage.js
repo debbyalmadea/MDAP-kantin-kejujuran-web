@@ -22,7 +22,7 @@ function RegisterPage() {
             sum += Math.floor(studentIDRef.current.value / (100 * Math.pow(10, i)) % 10)
         }
         
-        if (studentIDRef.current.value % 100 !== sum || studentIDRef.current.value % 10000 < 1 || Math.floor(studentIDRef.current.value / 10000 > 9)) {
+        if (studentIDRef.current.value % 100 !== sum || Math.floor(studentIDRef.current.value / 10000) < 1 || Math.floor(studentIDRef.current.value / 10000 > 9)) {
             return setErrorMessage('Student ID is invalid.')
         }
         
