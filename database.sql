@@ -1,4 +1,4 @@
--- CREATE DATABASE kantin_kejujuran_db;
+CREATE DATABASE kantin_db;
 
 CREATE TABLE "user"(
     id SERIAL PRIMARY KEY,
@@ -21,3 +21,5 @@ CREATE TABLE item(
 CREATE TABLE balance_box(
     balance INT NOT NULL
 );
+
+INSERT INTO balance_box (balance) VALUES (0);
