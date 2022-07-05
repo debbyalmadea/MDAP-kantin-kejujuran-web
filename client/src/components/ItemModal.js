@@ -68,7 +68,7 @@ function ItemModal(props) {
         <div 
         onClick={props.closeModal}
         className="w-screen min-h-screen fixed top-0 left-0 bg-black bg-opacity-20 flex justify-center lg:items-center z-10">
-            {editForm ? <EditItemForm item={props.modalState.item} /> : 
+            {editForm ? <EditItemForm item={props.modalState.item} closeForm={() => setEditForm(false)}/> : 
             <div 
             onClick={(e) => {e.stopPropagation()}}
             className="flex flex-col lg:flex-row lg:ml-[40px] animate-slideIn relative my-[16px] max-h-screen overflow-scroll">

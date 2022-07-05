@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import Alert from "../components/Alert";
+import { FaTimes } from 'react-icons/fa';
 
 function EditItemForm(props) {
     const nameRef = useRef();
@@ -63,6 +64,10 @@ function EditItemForm(props) {
             <div
             onClick={(e) => {e.stopPropagation()}} 
             className="form-card animate-slideIn my-[8px] max-h-screen overflow-scroll">
+                
+                <button onClick={props.closeForm} className="text-[16px] sm:text-[24px] lg:text-[32px] font-semibold bg-white border-[1px] border-black rounded-full px-[4px] py-[4px] lg:px-[8px] lg:py-[8px] top-[16px] right-4 lg:right-6 lg:top-4 absolute shadow-md z-10">
+                    <FaTimes />
+                </button>
 
                 <h1 className="text-center text-[16px] sm:text-[32px] font-extrabold">
                     Edit Item
