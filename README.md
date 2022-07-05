@@ -1,8 +1,39 @@
 # Kantin Kejujuran PERN Stack Website
 
-Kantin Kejujuran PERN Stack Website is a website created to fulfill COMPFEST Software Engineering Academy selection task.
+Kantin Kejujuran PERN Stack Website is a responsive website created to fulfill COMPFEST Software Engineering Academy selection task.
 
 SD SEA Sentosa has a special corner named “Kantin Kejujuran”. It consists of some items for sale by students and a box to store all the purchased money. Everyone is free to look around, sell, and buy items there. There is no shopkeeper there so everyone is also free to add or withdraw the money in the box. Let’s digitalize the feature!
+
+## Deployment
+
+### Client: [Vercel](https://mdap-kantin-kejujuran-web.vercel.app/)
+
+### Server: Heroku
+
+### Database: Heroku
+
+## Local Setup
+
+1. Clone this repository
+2. Go to the **root directory** and install packages with `npm i` or `yarn i`
+3. Import PostgreSQL script file `psql -h localhost  -U postgres  -f database.sql  `
+4. Set a new `.env` file in root directory and add the following variables. *ACCESS_TOKEN_SECRET can be set to anything and represent the JWT Token Secret*
+```
+PG_USER=postgres
+PG_PASSWORD={ user password }
+PG_HOST=localhost
+PG_PORT=5432
+PG_DATABASE=kantin_db
+
+ACCESS_TOKEN_SECRET={ anything }
+```
+5. Run `npm start` to start the server side
+6. Go to **client** folder and install packages with `npm i` or `yarn i`
+7. Set a new `.env` file in the same folder and add the following variables
+```
+REACT_APP_SERVER_URL="http://localhost:8000"
+```
+8. Run `npm run start` to start the client side
 
 ## Website Feature
 ### User Authentication and Authorization
@@ -60,23 +91,18 @@ Website database is stored in PostgreSQL, a free and open-source relational data
 3. balance_box, used to store the canteen's balance. balance_box column consist of 1 column and 1 row
    * balance, the canteen's balance, only consist of 1 row
 
+![Entity Relationship](https://github.com/wwwscarlet/MDAP-kantin-kejujuran-web/blob/f555f9903d400731a0ab02390e1fe81abc3eb64d/Entity%20Relationship.jpg)
+*Picture 1 Entity Relationship of Database*
+
 ## Environment Variable
 
-This website used 3 environment variable
+This website used 3 environment variables
 * REACT_APP_SERVER_URL, to store the URL of the server for the client
 * ACCESS_TOKEN_SECRET, to store the access token secret of JWT 
-* DATABASE_URL, to store the URL of the database
+* DATABASE_URL, to store the URL of the database in production mode
 
 ## Graphic Used
 
 ### Figma plugins: [Blush](https://www.figma.com/community/plugin/838959511417581040)
 * Shiny Happy by Brendon Mendoza
 * Tech Life by Karthik Srinivas
-
-## Deployment
-
-### Client: [Vercel](https://mdap-kantin-kejujuran-web.vercel.app/)
-
-### Server: [Heroku](https://mdap-kantin-kejujuran-server.herokuapp.com/)
-
-### Database: Heroku
